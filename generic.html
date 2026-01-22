@@ -50,8 +50,107 @@
 									</header>
 									<span class="image main"><img src="images/pic11.jpg" alt="" /></span>
 									<p>[1] Collaborative Discussion 1 - (The Data Collection Process) Data wrangling converts raw data into clean, structured formats for accurate analytics and effective decision making. While it offers opportunities such as improved insights, automation, and real time collaboration, it is limited by time intensive processes, tool incompatibility, and the need for specialized expertise. Risks include data leaks, corruption, unauthorized access, and compromised integrity. Common challenges involve missing values, duplicates, unstructured data, and performance issues with large datasets. In IoT environments, additional issues arise from noisy or redundant sensor data, calibration errors, interoperability limitations, and security vulnerabilities. Effective security, anomaly detection, and advanced wrangling techniques are essential for producing reliable, high quality insights.</p>
-									<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor fermentum. Nullam venenatis erat id vehicula viverra. Nunc ultrices eros ut ultricies condimentum. Mauris risus lacus, blandit sit amet venenatis non, bibendum vitae dolor. Nunc lorem mauris, fringilla in aliquam at, euismod in lectus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. In non lorem sit amet elit placerat maximus. Pellentesque aliquam maximus risus, vel sed vehicula.</p>
-									<p>Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis. Praesent rutrum sem diam, vitae egestas enim auctor sit amet. Pellentesque leo mauris, consectetur id ipsum sit amet, fersapien risus, commodo eget turpis at, elementum convallis elit. Pellentesque enim turpis, hendrerit tristique lorem ipsum dolor.</p>
+									<p>[2] Web Scraping - (Script Findings)
+									   •Retrieves webpage successfully  •Parses HTML correctly •Filters for jobs matching "Data Scientist" •Stores extracted data in Python structures •Writes output into:JSON file and XML file.  
+									   Output files created •data_scientist_jobs.json and •data_scientist_jobs.xml   
+									   Data extracted •Job Title •Company •Location</p>
+									<p>[3] Data Management Pipeline Test - Status	Finished
+                                       Started	Friday, 7 November 2025, 6:17 PM
+                                       Completed	Monday, 22 December 2025, 3:40 PM
+                                       Duration	44 days 21 hours
+                                       Marks	               2.00/2.00
+                                       Grade	              10.00 out of 10.00 (100%</p>
+									<p>[4] Normalisation Task</p>
+										1NF							
+<p>Student Number  	Student Name  	Exam Score  	Support  	Date of Birth  	Course Name  	Exam Boards  	Teacher Name  
+1001	Bob Baker	78	No	8/25/2001	Computer Science	BCS	Mr Jones
+1001	Bob Baker	78	No	8/25/2001	Maths	EdExcel	Ms Parker
+1001	Bob Baker	78	No	8/25/2001	Physics	OCR	Mr Peters
+1002	Sally Davies	55	Yes	10/2/1999	Maths	AQA	Ms Parker
+1002	Sally Davies	55	Yes	10/2/1999	Biology	WJEC	Mrs Patel
+1002	Sally Davies	55	Yes	10/2/1999	Music	AQA	Ms Daniels
+1003	Mark Hanmill	90	No	6/5/1995	Computer Science	BCS	Mr Jones
+1003	Mark Hanmill	90	No	6/5/1995	Maths	EdExcel	Ms Parker
+1003	Mark Hanmill	90	No	6/5/1995	Physics	OCR	Mr Peters
+1004	Anas Ali	70	No	8/3/1980	Maths	AQA	Ms Parker
+1004	Anas Ali	70	No	8/3/1980	Physics	OCR	Mr Peters
+1004	Anas Ali	70	No	8/3/1980	Biology	WJEC	Mrs Patel
+1005	Cheuk Yin	45	Yes	5/1/2002	Computer Science	BCS	Mr Jones
+1005	Cheuk Yin	45	Yes	5/1/2002	Maths	EdExcel	Ms Parker
+1005	Cheuk Yin	45	Yes	5/1/2002	Music	AQA	Ms Daniels</p>
+									2NF (Partial dependencies removed)				
+STUDENT TABLE				
+Student Number (PK)	Student Name  	Exam Score  	Support  	Date of Birth  
+1001	Bob Baker	78	No	8/25/2001
+1002	Sally Davies	55	Yes	10/2/1999
+1003	Mark Hanmill	90	No	6/5/1995
+1004	Anas Ali	70	No	8/3/1980
+1005	Cheuk Yin	45	Yes	5/1/2002
+</p>
+									<p>[5] Data Build</p>
+CREATE TABLE students (
+  student_id         INT PRIMARY KEY,                    //Primary Key
+  student_name   VARCHAR(100) NOT NULL,
+  exam_score      INT CHECK (exam_score BETWEEN 0 AND 100),
+  support             BOOLEAN NOT NULL,                  // True / False
+  date_of_birth   DATE NOT NULL
+);
+
+CREATE TABLE courses (
+  course_id      CHAR(2) PRIMARY KEY                  //Primary Key (e.g., 'CS', 'MA')
+  course_name    VARCHAR(100) UNIQUE NOT 
+);
+
+CREATE TABLE exam_boards (
+  board_id       VARCHAR(10) PRIMARY KEY,            //Primary Key (e.g., 'AQA', 'OCR')
+  board_name     VARCHAR(50) UNIQUE NOT NULL
+);
+
+CREATE TABLE teachers (
+  teacher_id     CHAR(4) PRIMARY KEY,                //Primary Key (e.g. TPAR’, TDAN’)
+  teacher_name   VARCHAR(100) UNIQUE NOT NULL
+);
+
+CREATE TABLE course_offerings (
+  offering_id    INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,   //Surrogate PK
+  course_id      CHAR(2)      NOT NULL
+                  REFERENCES courses(course_id)
+                  ON UPDATE CASCADE ON DELETE RESTRICT,
+  board_id       VARCHAR(10)  NOT NULL
+                       REFERENCES exam_boards(board_id)
+                       ON UPDATE CASCADE ON DELETE RESTRICT,
+  teacher_id     CHAR(4)      NOT NULL
+                        REFERENCES teachers(teacher_id)
+                       ON UPDATE CASCADE ON DELETE RESTRICT,
+  CONSTRAINT uq_course_board UNIQUE (course_id, board_id)       -- natural uniqueness
+);
+
+CREATE TABLE enrollments (
+  student_id     INT NOT NULL
+                  REFERENCES students(student_id)
+                  ON UPDATE CASCADE ON DELETE CASCADE,          -- delete student → delete enrollments
+  offering_id    INT NOT NULL
+                  REFERENCES course_offerings(offering_id)
+                  ON UPDATE CASCADE ON DELETE CASCADE,          -- delete offering → delete enrollments
+  PRIMARY KEY (student_id, offering_id)                         -- composite PK</p>
+									
+<p>Test: Try to enroll student to a non-existing offering
+INSERT INTO enrollments (student_id, offering_id) VALUES (1001, 1234567);
+Result: Foreign Key violation</p>
+
+<p>Test: Create an offering referencing a non-existing course_id
+INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('FA', 'AQA','TPAR');
+Result: Foreign Key violation</p>
+
+<p>Test: Create an offering referencing a non-existing board_id
+INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','NONE','TPAR');
+Result: Error</p>
+
+<p>Test: Create an offering referencing a non-existing board_id
+INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','AQA','ABCD');
+Result: Error
+</p>
+								<p>6]Collaborative Discussion 2 - Comparing Compliance Laws</p>
 								</div>
 							</section>
 
@@ -140,6 +239,7 @@
 	</body>
 
 </html>
+
 
 
 

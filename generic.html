@@ -95,7 +95,7 @@ Student Number (PK)	Student Name  	Exam Score  	Support  	Date of Birth
 1005	Cheuk Yin	45	Yes	5/1/2002
 </p>
 									<p>[5] Data Build</p>
-									Instructions: Once you have completed the Normalisation Task, build a relational database system, with linked tables, demonstrating your knowledge of primary and secondary keys. Test your database to ensure referential integrity.
+									Instructions: Once you have completed the Normalisation Task, build a relational database system, with linked tables, demonstrating your knowledge of primary and secondary keys. Test your database to ensure referential integrity.<br>
 									
 CREATE TABLE students (
   student_id         INT PRIMARY KEY,                    //Primary Key
@@ -145,15 +145,15 @@ CREATE TABLE enrollments (
 									
 <p>Test: Try to enroll student to a non-existing offering
 INSERT INTO enrollments (student_id, offering_id) VALUES (1001, 1234567);
-Result: Foreign Key violation</p>
+Result: Foreign Key violation<br>
 
 <p>Test: Create an offering referencing a non-existing course_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('FA', 'AQA','TPAR');
-Result: Foreign Key violation</p>
+Result: Foreign Key violation<br>
 
 <p>Test: Create an offering referencing a non-existing board_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','NONE','TPAR');
-Result: Error</p>
+Result: Error<br>
 
 <p>Test: Create an offering referencing a non-existing board_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','AQA','ABCD');
@@ -289,6 +289,7 @@ Defining assumptions (e.g., public vs. internal APIs, cloud‑hosted environment
 	</body>
 
 </html>
+
 
 
 

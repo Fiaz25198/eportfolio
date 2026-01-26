@@ -145,17 +145,14 @@ CREATE TABLE enrollments (
 									
 <p>Test: Try to enroll student to a non-existing offering
 INSERT INTO enrollments (student_id, offering_id) VALUES (1001, 1234567);
-Result: Foreign Key violation
-
-<p>Test: Create an offering referencing a non-existing course_id
+Result: Foreign Key violation<br>
+Test: Create an offering referencing a non-existing course_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('FA', 'AQA','TPAR');
-Result: Foreign Key violation
-
-<p>Test: Create an offering referencing a non-existing board_id
+Result: Foreign Key violation<br>
+Test: Create an offering referencing a non-existing board_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','NONE','TPAR');
 Result: Error<br>
-
-<p>Test: Create an offering referencing a non-existing board_id
+Test: Create an offering referencing a non-existing board_id
 INSERT INTO course_offerings (course_id, board_id, teacher_id) VALUES ('MA','AQA','ABCD');
 Result: Error
 </p>
@@ -289,6 +286,7 @@ Defining assumptions (e.g., public vs. internal APIs, cloud‑hosted environment
 	</body>
 
 </html>
+
 
 
 

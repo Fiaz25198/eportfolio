@@ -248,7 +248,56 @@ r, p_value = pearsonr(final_df["Mean Population (2001–2021)"], final_df["Mean 
 print(f"Pearson Correlation Coefficient: {r:.2f}")
 print(f"P-value: {p_value:.4f}")</br>
 Pearson Correlation Coefficient: -0.10
-P-value: 0.1113</br></p> 							
+P-value: 0.1113</br></p> 		
+
+TASK B: Regression</br>
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import pearsonr
+gdp = pd.read_csv("C:/Users/User/Desktop/ESSEX/UOL Online/Machine Learning/UNIT4/Global_GDP.csv")
+pop = pd.read_csv("C:/Users/User/Desktop/ESSEX/UOL Online/Machine Learning/UNIT4/Global_Population.csv")
+gdp_years = [c for c in gdp.columns if c.isdigit()]
+pop_years = [c for c in pop.columns if c.isdigit()]
+years = sorted(set(gdp_years).intersection(set(pop_years)))
+years = [y for y in years if 2001 <= int(y) <= 2020]
+gdp[years] = gdp[years].apply(pd.to_numeric, errors="coerce")
+pop[years] = pop[years].apply(pd.to_numeric, errors="coerce")
+gdp[years] = gdp[years].interpolate(axis=1).ffill(axis=1).bfill(axis=1)
+pop[years] = pop[years].interpolate(axis=1).ffill(axis=1).bfill(axis=1)
+merged = pd.merge(
+    gdp[["Country Name","Country Code"]+years],
+    pop[["Country Name","Country Code"]+years],
+    on="Country Code",
+    suffixes=("_GDP","_POP")
+)
+for y in years:
+    merged[y+"_PCGDP"] = merged[y+"_GDP"] / merged[y+"_POP"]
+merged["Mean Population"] = merged[[y+"_POP" for y in years]].mean(axis=1)
+merged["Mean Per Capita GDP"] = merged[[y+"_PCGDP" for y in years]].mean(axis=1)
+final_df = merged[["Country Name_GDP","Mean Population","Mean Per Capita GDP"]].dropna()
+final_df.rename(columns={"Country Name_GDP":"Country"}, inplace=True)
+plt.figure(figsize=(10,6))
+sns.scatterplot(
+    data=final_df,
+    x="Mean Population",
+    y="Mean Per Capita GDP"
+)
+plt.xscale("log")
+plt.yscale("log")
+plt.title("Mean Population vs Mean Per Capita GDP (2001–2020)")
+plt.xlabel("Mean Population (log scale)")
+plt.ylabel("Mean Per Capita GDP (log scale)")
+plt.grid(True, which="both", linestyle="--", alpha=0.5)
+plt.show()
+r, p_value = pearsonr(final_df["Mean Population"], final_df["Mean Per Capita GDP"])
+print(f"Pearson Correlation Coefficient: {r:.2f}")
+print(f"P-value: {p_value:.4f}")</br>
+
+Pearson Correlation Coefficient: -0.10
+P-value: 0.1113</br></p> 
+
 
 								        Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 4</br></p>
 																	

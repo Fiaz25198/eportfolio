@@ -104,12 +104,12 @@ df = pd.read_csv("Unit02 auto-mpg (1) (2).csv")
 df.replace("?", np.nan, inplace=True)
 df['horsepower'] = pd.to_numeric(df['horsepower'], errors='coerce')
 print(df.isnull().sum())
-df['horsepower'].fillna(df['horsepower'].median(), inplace=True)</br></p>  
+df['horsepower'].fillna(df['horsepower'].median(), inplace=True)</br>
 									
 from scipy.stats import skew, kurtosis
 num_cols = ['mpg','cylinders','displacement','horsepower','weight','acceleration','model year']
 for col in num_cols:
-print(f"{col}: Skewness={skew(df[col])}, Kurtosis={kurtosis(df[col])}")</br></p>  
+print(f"{col}: Skewness={skew(df[col])}, Kurtosis={kurtosis(df[col])}")</br> 
 									
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -117,7 +117,7 @@ corr = df[num_cols].corr()
 plt.figure(figsize=(10,6))
 sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
 plt.title("Correlation Heatmap")
-plt.show()</br></p>  
+plt.show()</br>
 									
 sns.pairplot(df[['mpg','weight','horsepower','displacement','acceleration','model year']], diag_kind='kde')
 plt.show()</br></p>  

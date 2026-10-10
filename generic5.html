@@ -136,10 +136,30 @@ myline = numpy.linspace(1, 25, 100)
 plt.scatter(x, y)
 plt.plot(myline, mymodel(myline))
 plt.show()</br></p> 
-Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
 									   
-									e-Portfolio Activity: Correlation and Regression</br>
-								        covariance_pearson_correlation.ipynb</br>
+covariance_pearson_correlation.ipynb</br>
+from numpy import mean
+from numpy import std
+from numpy import cov
+from numpy.random import randn
+from numpy.random import seed
+from matplotlib import pyplot as plt
+import seaborn as sns
+from scipy.stats import pearsonr
+seed(1)
+data1 = 50 * randn(1000) + 100
+data2 = data1 + (10 * randn(1000) + 50)
+covariance = cov(data1, data2)
+corr, _ = pearsonr(data1, data2)
+plt.scatter(data1, data2)
+plt.show()
+print('data1: mean=%.3f stdv=%.3f' % (mean(data1), std(data1)))
+print('data2: mean=%.3f stdv=%.3f' % (mean(data2), std(data2)))
+print('Covariance: %.3f' % covariance[0][1])
+print('Pearsons correlation: %.3f' % corr)</br></p>
+
+Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
+
 									    linear_regression.ipynb</br>
 									    multiple_linear_regression.ipynb</br>
                                         polynomial_regression.ipynb</br></p>    

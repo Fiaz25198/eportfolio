@@ -123,12 +123,22 @@ sns.pairplot(df[['mpg','weight','horsepower','displacement','acceleration','mode
 plt.show()</br></p>  
 									
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 2.</br>
-									    </br> 
-                                        <b>[Unit 3]</b></br> 
-								        <b>Correlation and Regression</b></br>
-									    e-Portfolio Activity: Correlation and Regression</br>
-									    Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
-									    e-Portfolio Activity: Correlation and Regression</br>
+									    
+<b>[Unit 3]</b></br> 
+<b>Correlation and Regression</b></br>
+e-Portfolio Activity: Correlation and Regression</br>
+import numpy
+import matplotlib.pyplot as plt
+x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]
+y = [100,90,80,60,90,55,60,65,70,70,85,76,78,79,90,99,99,100]
+mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
+myline = numpy.linspace(1, 25, 100)
+plt.scatter(x, y)
+plt.plot(myline, mymodel(myline))
+plt.show()</br></p> 
+Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
+									   
+									e-Portfolio Activity: Correlation and Regression</br>
 								        covariance_pearson_correlation.ipynb</br>
 									    linear_regression.ipynb</br>
 									    multiple_linear_regression.ipynb</br>

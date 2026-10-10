@@ -190,10 +190,18 @@ print(speed)
 106.47939661515821</br></p>		
 
 multiple_linear_regression</br>
+import pandas
+from sklearn import linear_model
+df = pandas.read_csv("cars.csv")
+X = df[['Weight', 'Volume']]
+y = df['CO2']
+regr = linear_model.LinearRegression()
+regr.fit(X, y)
+predictedCO2 = regr.predict([[3000, 1500]])
+print(predictedCO2)</br></p>		
 
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
 				        
-
 <b>[Unit 4]</b></br> 
 								    	<b>Linear Regression with Scikit-Learn</b></br>
 								        Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 4</br></p>

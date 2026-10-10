@@ -97,24 +97,19 @@ National Audit Office (2017) Investigation: WannaCry cyber attack and the NHS. L
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 1.</br></p>       							
 									   
 <b>[Unit 2]</b></br> 
-<b>Exploratory Data Analysis</b></br>
+<b>Exploratory Data Analysis</b></br></p>  
 import pandas as pd
 import numpy as np
-# Load dataset
 df = pd.read_csv("Unit02 auto-mpg (1) (2).csv")
-# Replace '?' with NaN
 df.replace("?", np.nan, inplace=True)
-# Convert horsepower to numeric
 df['horsepower'] = pd.to_numeric(df['horsepower'], errors='coerce')
-# Check missing values
 print(df.isnull().sum())
-# Option 1: Fill missing horsepower with median
-df['horsepower'].fillna(df['horsepower'].median(), inplace=True)</br>
+df['horsepower'].fillna(df['horsepower'].median(), inplace=True)</br></p>  
 									
 from scipy.stats import skew, kurtosis
 num_cols = ['mpg','cylinders','displacement','horsepower','weight','acceleration','model year']
 for col in num_cols:
-print(f"{col}: Skewness={skew(df[col])}, Kurtosis={kurtosis(df[col])}")</br>
+print(f"{col}: Skewness={skew(df[col])}, Kurtosis={kurtosis(df[col])}")</br></p>  
 									
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -122,10 +117,10 @@ corr = df[num_cols].corr()
 plt.figure(figsize=(10,6))
 sns.heatmap(corr, annot=True, cmap="coolwarm", fmt=".2f")
 plt.title("Correlation Heatmap")
-plt.show()</br>
+plt.show()</br></p>  
 									
 sns.pairplot(df[['mpg','weight','horsepower','displacement','acceleration','model year']], diag_kind='kde')
-plt.show()</br>
+plt.show()</br></p>  
 									
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 2.</br>
 									    </br> 

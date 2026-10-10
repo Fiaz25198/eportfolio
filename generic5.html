@@ -298,10 +298,48 @@ print(f"P-value: {p_value:.4f}")</br>
 Pearson Correlation Coefficient: -0.10
 P-value: 0.1113</br></p> 
 
+Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 4</br></p>
 
-								        Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 4</br></p>
-																	
-									    <b>[Unit 5]</b></br>
+																
+<b>[Unit 5]</b></br>
+<b>Jaccard SimilarityJaccard Dissimilarity</b></br>
+Name	Gender	Fever	Cough	Test-1	Test-2	Test-3	Test-4
+Jack	M	      Y  	 N	     P	      N	      N	     A
+Mary	F	      Y	     N	     P	      A	      P	     N
+Jim  	M	      Y	     P	     N	      N	      N	     A</br>
+
+
+Jaccard similarity formula</br>
+J(A,B)=∣A∩B∣∣A∪B∣</br>
+D(A,B)=1−J(A,B)</br>
+
+Pairwise Calculations</br>
+
+(Jack, Mary)</br>
+J=37=0.4286</br>
+D=1−0.4286=0.5714</br>
+
+(Jack, Jim)</br>
+J=57=0.7143</br>
+D=1−0.7143=0.2857</br>
+
+
+(Jim, Mary)</br>
+J=17=0.1429</br>
+D=1−0.1429=0.8571</br>
+
+
+Pair	Jaccard Similarity	Jaccard Distance</br>
+Jack–Mary	0.4286	0.5714</br>
+Jack–Jim	0.7143	0.2857</br>
+Jim–Mary	0.1429	0.8571</br></p>
+
+
+
+
+
+
+	
 									    <b>Clustering</b></br>
 									    Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly- Chapter 8</br></p>
 									    Jaccard Distance/Dissimilarity Calculations</br>

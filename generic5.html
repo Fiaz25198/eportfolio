@@ -174,17 +174,24 @@ plt.plot(x, mymodel, color="red")
 plt.xlabel("X values")
 plt.ylabel("Y values")
 plt.title("Linear Regression Example")
-plt.show()</br></p>
+plt.show()</br>				
+Pearsons correlation: -0.456</br></p>								
 
-									
+Predict Future Values</br>
+from scipy import stats
+x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+y = [100,106,110,88,111,106,103,87,116,106,115,118,120]
+slope, intercept, r, p, std_err = stats.linregress(x, y)
+def myfunc(x):
+return intercept + slope * x 
+speed = myfunc(10)
+print(speed)									
+106.47939661515821</br></p>									
 
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
+				        
 
-									    linear_regression.ipynb</br>
-									    multiple_linear_regression.ipynb</br>
-                                        polynomial_regression.ipynb</br></p>    
-				4
-									    <b>[Unit 4]</b></br> 
+<b>[Unit 4]</b></br> 
 								    	<b>Linear Regression with Scikit-Learn</b></br>
 								        Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 4</br></p>
 																	

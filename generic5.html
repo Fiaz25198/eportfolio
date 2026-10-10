@@ -158,6 +158,26 @@ print('data2: mean=%.3f stdv=%.3f' % (mean(data2), std(data2)))
 print('Covariance: %.3f' % covariance[0][1])
 print('Pearsons correlation: %.3f' % corr)</br></p>
 
+linear_regression</br>
+import matplotlib.pyplot as plt
+from scipy import stats
+x = [5,7,8,7,2,17,2,9,4,11,12,9,6]
+y = [99,86,87,88,111,86,103,87,94,78,77,85,86]
+slope, intercept, r, p, std_err = stats.linregress(x, y)
+corr, _ = stats.pearsonr(x, y)
+print('Pearsons correlation: %.3f' % corr)
+def myfunc(x):
+return slope * x + intercept
+mymodel = list(map(myfunc, x))
+plt.scatter(x, y)
+plt.plot(x, mymodel, color="red")
+plt.xlabel("X values")
+plt.ylabel("Y values")
+plt.title("Linear Regression Example")
+plt.show()</br></p>
+
+									
+
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
 
 									    linear_regression.ipynb</br>

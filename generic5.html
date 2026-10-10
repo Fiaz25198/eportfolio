@@ -308,6 +308,9 @@ Jack	M	      Y  	 N	     P	      N	      N	     A</br>
 Mary	F	      Y	     N	     P	      A	      P	     N</br>
 Jim  	M	      Y	     P	     N	      N	      N	     A</br></p>
 
+Jack → [Y=1, N=0, P=1, N=0, N=0, A=0] → [1,0,1,0,0,0]</br>
+Mary → [Y=1, N=0, P=1, A=0, P=1, N=0] → [1,0,1,0,1,0]</br>
+Jim → [Y=1, P=1, N=0, N=0, N=0, A=0] → [1,1,0,0,0,0]</br></p>
 
 Jaccard similarity formula</br>
 J(A,B)=∣A∩B∣∣A∪B∣</br>
@@ -316,43 +319,39 @@ D(A,B)=1−J(A,B)</br></p>
 Pairwise Calculations</br>
 
 (Jack, Mary)</br>
-J=37=0.4286</br>
-D=1−0.4286=0.5714</br>
+•	Jack = [1,0,1,0,0,0]</br>
+•	Mary = [1,0,1,0,1,0]</br>
+•	Intersection = [1,0,1,0,0,0] → sum = 2</br>
+•	Union = [1,0,1,0,1,0] → sum = 3</br>
+J=23=0.6667,D=0.3333</br>
 
 (Jack, Jim)</br>
-J=57=0.7143</br>
-D=1−0.7143=0.2857</br>
-
+•	Jack = [1,0,1,0,0,0]</br>
+•	Jim = [1,1,0,0,0,0]</br>
+•	Intersection = [1,0,0,0,0,0] → sum = 1</br>
+•	Union = [1,1,1,0,0,0] → sum = 3</br>
+J=13=0.3333,D=0.6667</br>
 
 (Jim, Mary)</br>
-J=17=0.1429</br>
-D=1−0.1429=0.8571</br></p>
+•	Jim = [1,1,0,0,0,0]</br>
+•	Mary = [1,0,1,0,1,0]</br>
+•	Intersection = [1,0,0,0,0,0] → sum = 1</br>
+•	Union = [1,1,1,0,1,0] → sum = 4</br>
+J=14=0.25,D=0.75</br>
+
+
 
 
 Pair	Jaccard Similarity	Jaccard Distance</br>
-Jack–Mary	0.4286	0.5714</br>
-Jack–Jim	0.7143	0.2857</br>
-Jim–Mary	0.1429	0.8571</br></p>
+Jack–Mary	0.6667	         0.3333<br>
+Jack–Jim	0.3333	0.66677</br>
+Jim–Mary	0.2500	0.75001</br></p>
 
-
-
-
-
-
-	
-									    <b>Clustering</b></br>
-									    Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly- Chapter 8</br></p>
-									    Jaccard Distance/Dissimilarity Calculations</br>
-									    Jaccard SimilarityJaccard Dissimilarity</br>
-									    Jack, Mary 0.5000.500</br>
-									    Jack, Jim 0.6670.333</br>
-									    Jim, Mary 0.1670.833</br></p>
-
-
-											
-									    <b>[Unit 6]</br>
-									    Clustering with Python</b></br>
-										Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly - Chapter 8</br></p>
+Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly- Chapter 8</br></p>
+									   
+<b>[Unit 6]</br>
+Clustering with Python</b></br>
+Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly - Chapter 8</br></p>
 									    Development Team Project: Project Report</br>
 									    Lecturer Feedback</br>
 									    What was done well:</br>

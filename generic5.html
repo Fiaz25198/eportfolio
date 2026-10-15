@@ -125,64 +125,24 @@ Pearsons correlation: -0.456</br>
 If x=10 then predicted y is 85.59</br></p>							
 					
 4. multiple_linear_regression</br>
-import pandas
-from sklearn import linear_model
-df = pandas.read_csv("cars.csv")
-X = df[['Weight', 'Volume']]
-y = df['CO2']
-regr = linear_model.LinearRegression()
-regr.fit(X, y)
-predictedCO2 = regr.predict([[3000, 1500]])
-print(predictedCO2)</br></p>		
+predictedCO2 = regr.predict([[3300, 1300]])</br>
+print(predictedCO2)</br>	
+[114.75968007]</br></p> 
 
 Reading - Géron, A. (2025) Hands-On Machine Learning with Scikit-Learn and PyTorch. Santa Rosa: O'Reilly. - Chapter 3.</br></p> 
 				        
 <b>[Unit 4]</b></br> 
+Learning Outcomes</br>
+- Undertake regression modelling with complex dataset.
+- Evaluate the results to optimise the model.
+- Know about more about the scikit-learn library of Python.
+Datasets</br>
+-  demo correlation regression fuelconsumption.ipynb.</br>
+-  Global_Population.csv.</br>
+-  Global_GDP.csv </br></p> 
 <b>Linear Regression with Scikit-Learn</b></br></p> 
 TASK A: Correlation</br>
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy.stats import pearsonr
-gdp = pd.read_csv("Unit04 Global_GDP.csv")
-pop = pd.read_csv("Unit04 Global_Population.csv")
-desired_years = [str(y) for y in range(2001, 2022)]
-available_years = [y for y in desired_years if y in gdp.columns and y in pop.columns]
-gdp[available_years] = gdp[available_years].apply(pd.to_numeric, errors="coerce")
-pop[available_years] = pop[available_years].apply(pd.to_numeric, errors="coerce")
-gdp[available_years] = gdp[available_years].interpolate(axis=1).ffill(axis=1).bfill(axis=1)
-pop[available_years] = pop[available_years].interpolate(axis=1).ffill(axis=1).bfill(axis=1)
-merged = pd.merge(
-    gdp[["Country Name","Country Code"]+available_years],
-    pop[["Country Name","Country Code"]+available_years],
-    on="Country Code",
-    suffixes=("_gdp","_pop")
-)
-per_capita = merged[[y+"_gdp" for y in available_years]].values / merged[[y+"_pop" for y in available_years]].values
-per_capita_df = pd.DataFrame(per_capita, columns=available_years)
-per_capita_df["Country"] = merged["Country Name_gdp"]
-mean_pop = merged[[y+"_pop" for y in available_years]].mean(axis=1)
-mean_pc_gdp = per_capita_df[available_years].mean(axis=1)
-final_df = pd.DataFrame({
-    "Country": merged["Country Name_gdp"],
-    "Mean Population (2001–2021)": mean_pop,
-    "Mean Per Capita GDP (2001–2021)": mean_pc_gdp
-}).dropna()
-plt.figure(figsize=(10,6))
-sns.scatterplot(
-    data=final_df,
-    x="Mean Population (2001–2021)",
-    y="Mean Per Capita GDP (2001–2021)"
-)
-plt.xscale("log")
-plt.yscale("log")
-plt.title("Mean Population vs Mean Per Capita GDP (2001–2021)")
-plt.show()
-r, p_value = pearsonr(final_df["Mean Population (2001–2021)"], final_df["Mean Per Capita GDP (2001–2021)"])
-print(f"Pearson Correlation Coefficient: {r:.2f}")
-print(f"P-value: {p_value:.4f}")</br>
-Pearson Correlation Coefficient: -0.10
+Pearson Correlation Coefficient: -0.10</br>
 P-value: 0.1113</br></p> 		
 
 TASK B: Regression</br>

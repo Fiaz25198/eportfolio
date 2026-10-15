@@ -103,36 +103,14 @@ Learning Outcomes</br>
 - Be able to apply these statistical techniques in real world scenario.</br></p> 
 
 1. polynomial_regression</br>
-import numpy
-import matplotlib.pyplot as plt
-x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]
-y = [100,90,80,60,90,55,60,65,70,70,85,76,78,79,90,99,99,100]
-mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))
-myline = numpy.linspace(1, 25, 100)
-plt.scatter(x, y)
-plt.plot(myline, mymodel(myline))
-plt.show()</br></p> 
+x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]</br>
+y = [100,90,80,60,90,55,60,65,70,70,85,76,78,79,90,99,99,100]</br></p> 
 									   
 2. covariance_pearson_correlation</br>
-from numpy import mean
-from numpy import std
-from numpy import cov
-from numpy.random import randn
-from numpy.random import seed
-from matplotlib import pyplot as plt
-import seaborn as sns
-from scipy.stats import pearsonr
-seed(1)
-data1 = 50 * randn(1000) + 100
-data2 = data1 + (10 * randn(1000) + 50)
-covariance = cov(data1, data2)
-corr, _ = pearsonr(data1, data2)
-plt.scatter(data1, data2)
-plt.show()
-print('data1: mean=%.3f stdv=%.3f' % (mean(data1), std(data1)))
-print('data2: mean=%.3f stdv=%.3f' % (mean(data2), std(data2)))
-print('Covariance: %.3f' % covariance[0][1])
-print('Pearsons correlation: %.3f' % corr)</br></p>
+data1: mean=101.941 stdv=49.050</br>
+data2: mean=152.214 stdv=50.340</br>
+Covariance: 2419.385</br>
+Pearsons correlation: 0.979</br></p>
 
 3. linear_regression</br>
 import matplotlib.pyplot as plt
